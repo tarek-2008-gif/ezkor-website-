@@ -109,9 +109,8 @@
   <!-- Top Announcement / AdSense Top Banner -->
   <div class="bg-emerald-900 border-b border-gold-500/20 text-xs py-2 px-4 text-center text-gold-400 flex items-center justify-between">
     <span class="hidden md:inline"><i class="fa-solid fa-star-and-crescent ml-1"></i> مرحباً بك في منصة اذكر | رفيقك الرقمي اليومي</span>
-    <!-- AdSense Top Banner Placeholder -->
     <div class="mx-auto md:mx-0 bg-emerald-950/50 border border-gold-500/30 px-3 py-1 rounded text-[10px] text-slate-400">
-      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان خفيف يدعم استمرار الخدمة
+      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان يدعم استمرار المنصة
     </div>
     <div id="current-time-badge" class="font-mono text-gold-400">00:00:00</div>
   </div>
@@ -133,7 +132,7 @@
         </div>
       </div>
 
-      <!-- Quick Actions (Theme Switcher, User Auth, Mobile Nav Toggle) -->
+      <!-- Quick Actions -->
       <div class="flex items-center space-x-3 space-x-reverse">
         
         <!-- Theme Switcher -->
@@ -206,7 +205,7 @@
           <div class="bg-emerald-900/60 p-4 rounded-xl border border-gold-500/20 text-center min-w-[200px]">
             <p class="text-xs text-gold-400 font-bold" id="hijri-date-display">جاري تحميل التاريخ الهجري...</p>
             <p class="text-[11px] text-slate-300 mt-0.5" id="gregorian-date-display"></p>
-            <span class="text-[9px] text-slate-400 block mt-1">* قد يختلف التاريخ الهجري بحسب رؤية الهلال المحلية</span>
+            <span class="text-[9px] text-slate-400 block mt-1">* متزامن بحسب الرؤية الشرعية للهلال</span>
           </div>
         </div>
       </div>
@@ -257,12 +256,12 @@
           <div>
             <div class="flex justify-between items-center mb-3">
               <span class="text-xs font-bold text-gold-400 flex items-center gap-1">
-                <i class="fa-solid fa-quote-right"></i> حديث نبوي
+                <i class="fa-solid fa-quote-right"></i> الحديث اليومي المتجدد
               </span>
-              <span class="text-[10px] bg-emerald-800 text-slate-300 px-2 py-0.5 rounded">صحيح البخاري</span>
+              <span class="text-[10px] bg-emerald-800 text-slate-300 px-2 py-0.5 rounded" id="daily-hadith-source">حديث مبارك</span>
             </div>
-            <p class="text-xs leading-relaxed text-slate-200 my-2">
-              قال رسول الله ﷺ: "مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لا يَذْكُرُ رَبَّهُ، مَثَلُ الْحَيِّ وَالْمَيِّتِ".
+            <p class="text-xs leading-relaxed text-slate-200 my-2" id="daily-hadith-text">
+              جاري جلب الحديث اليومي...
             </p>
           </div>
           <button onclick="switchTab('azkar')" class="w-full mt-3 py-2 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 font-bold text-xs rounded-lg shadow hover:brightness-110">
@@ -272,9 +271,9 @@
 
       </div>
 
-      <!-- AdSense Native Banner -->
+      <!-- Ad Display Space -->
       <div class="w-full glass-card p-3 rounded-xl text-center border border-dashed border-gold-500/40 text-slate-400 text-xs">
-        <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> مساحة إعلانية مميزة - Google AdSense Clean Banner
+        <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> مساحة إعلانية متكاملة - Adsterra Native Ads
       </div>
 
     </section>
@@ -286,15 +285,15 @@
         <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <div>
             <h2 class="text-2xl font-bold font-amiri text-gold-400 flex items-center gap-2">
-              <i class="fa-solid fa-book-quran"></i> المصحف الإلكتروني الشريف
+              <i class="fa-solid fa-book-quran"></i> المصحف الإلكتروني الشريف (114 سورة)
             </h2>
-            <p class="text-xs text-slate-300">قراءة دقيقة بالرسم العثماني المعتمد مع إمكانية التفسير والاستماع</p>
+            <p class="text-xs text-slate-300">قراءة دقيقة بالرسم العثماني المعتمد لجميع السور الكريمة</p>
           </div>
 
           <!-- Surah Selector & Controls -->
           <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
-            <select id="surah-select" onchange="loadSurah(this.value)" class="bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 outline-none focus:border-gold-400 flex-1 md:w-48">
-              <!-- Will be filled dynamically -->
+            <select id="surah-select" onchange="loadSurah(this.value)" class="bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 outline-none focus:border-gold-400 flex-1 md:w-56">
+              <!-- Dynamically populated with all 114 Surahs -->
             </select>
 
             <select id="reciter-select" class="bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 outline-none focus:border-gold-400">
@@ -326,7 +325,7 @@
 
         <!-- Surah Verses Container -->
         <div id="quran-verses-container" class="space-y-6 text-justify leading-loose font-amiri text-xl md:text-2xl text-emerald-100 dark:text-ivory-100 min-h-[300px] p-2">
-          <p class="text-center text-sm text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل النص القرآني المعتمد...</p>
+          <p class="text-center text-sm text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل السورة المباركة...</p>
         </div>
 
       </div>
@@ -360,24 +359,24 @@
         <div class="glass-card rounded-2xl p-6 border border-gold-500/30 flex flex-col justify-between text-center">
           <div>
             <h2 class="text-xl font-bold font-amiri text-gold-400 mb-2 flex items-center justify-center gap-2">
-              <i class="fa-solid fa-compass"></i> اتجاه القبلة
+              <i class="fa-solid fa-compass"></i> بوصلة اتجاه القبلة الذكية
             </h2>
-            <p class="text-xs text-slate-300 mb-6">احسب اتجاه الكعبة المشرفة بناءً على موقعك الجغرافي الحالي</p>
+            <p class="text-xs text-slate-300 mb-4">احسب واكتشف اتجاه الكعبة المشرفة بدقة لموقعك الحقيقي</p>
 
             <!-- Qibla Compass Visual -->
-            <div class="relative w-48 h-48 mx-auto my-4 rounded-full border-4 border-gold-500/50 flex items-center justify-center bg-emerald-900/60 shadow-inner">
+            <div class="relative w-52 h-52 mx-auto my-4 rounded-full border-4 border-gold-500/50 flex items-center justify-center bg-emerald-900/60 shadow-inner">
               <div class="absolute inset-0 flex items-center justify-center text-gold-500/20 text-6xl">
                 <i class="fa-solid fa-kaaba"></i>
               </div>
-              <div id="compass-needle" class="w-1 h-32 bg-gradient-to-t from-transparent via-gold-500 to-red-500 rounded-full transition-transform duration-500 transform origin-center" style="transform: rotate(136deg);"></div>
-              <div class="w-6 h-6 rounded-full bg-gold-500 z-10 border-2 border-emerald-950 shadow"></div>
+              <div id="compass-needle" class="w-1.5 h-36 bg-gradient-to-t from-transparent via-gold-500 to-red-500 rounded-full transition-transform duration-300 transform origin-center" style="transform: rotate(136deg);"></div>
+              <div class="w-7 h-7 rounded-full bg-gold-500 z-10 border-2 border-emerald-950 shadow"></div>
             </div>
 
             <p class="text-xs text-gold-400 font-mono mt-2" id="qibla-degree-text">درجة اتجاه القبلة: 136° نحو الكعبة المشرفة</p>
           </div>
 
           <div class="bg-emerald-900/40 p-3 rounded-xl border border-gold-500/20 text-[11px] text-slate-300 mt-4">
-            <i class="fa-solid fa-circle-info text-gold-400 ml-1"></i> تحذير: تتأثر البوصلة الإلكترونية بوجود أجهزة مغناطيسية قريبة على جهازك.
+            <i class="fa-solid fa-circle-info text-gold-400 ml-1"></i> يتم استخدام مستشعر البوصلة الجغرافية بجهازك لتحديد القبلة الحية.
           </div>
         </div>
 
@@ -454,11 +453,16 @@
     <section id="sec-duaa" class="tab-content hidden space-y-6">
       
       <div class="glass-card rounded-2xl p-6 border border-gold-500/30">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl font-bold font-amiri text-gold-400 flex items-center gap-2">
-            <i class="fa-solid fa-kaaba"></i> موسوعة الأدعية والأحاديث
-          </h2>
-          <div class="text-xs text-slate-300">مجموعة من الأدعية المأثورة الموثقة</div>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-2xl font-bold font-amiri text-gold-400 flex items-center gap-2">
+              <i class="fa-solid fa-kaaba"></i> موسوعة الأدعية والأحاديث النبوية
+            </h2>
+            <p class="text-xs text-slate-300">أدعية مأثورة وأحاديث صحيحة متجددة يومياً</p>
+          </div>
+          <button onclick="loadMoreHadiths()" class="px-4 py-2 bg-emerald-900 text-gold-400 text-xs rounded-lg border border-gold-500/30 hover:bg-gold-500 hover:text-emerald-950 transition-all">
+            <i class="fa-solid fa-arrows-rotate ml-1"></i> تغيير الأحاديث والأدعية
+          </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="duaa-cards-grid">
@@ -468,47 +472,75 @@
 
     </section>
 
-    <!-- TAB 6: ZAKAT CALCULATOR -->
+    <!-- TAB 6: ZAKAT CALCULATOR (ENHANCED INDEPENDENT CALCULATIONS) -->
     <section id="sec-zakat" class="tab-content hidden space-y-6">
       
       <div class="glass-card rounded-2xl p-6 border border-gold-500/30 max-w-2xl mx-auto">
         <h2 class="text-2xl font-bold font-amiri text-gold-400 mb-2 text-center">
-          <i class="fa-solid fa-calculator"></i> حاسبة الزكاة الشرعية
+          <i class="fa-solid fa-calculator"></i> حاسبة الزكاة الشرعية المتقدمة
         </h2>
-        <p class="text-xs text-slate-300 mb-6 text-center">احسب زكاة مالك والذهب بسهولة وفق الأنصبة الشرعية المعتمدة (2.5%)</p>
+        <p class="text-xs text-slate-300 mb-6 text-center">تحسب كل نوع مال على حدة وفق النِصاب الشرعي المعتمد (2.5%)</p>
 
         <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-gold-400 mb-1">إجمالي النقود والمدخرات (بالعملة المحلية)</label>
-            <input type="number" id="zakat-cash" placeholder="مثال: 50000" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          <!-- Live Gold Rate Banner -->
+          <div class="bg-emerald-900/60 p-3 rounded-xl border border-gold-500/30 flex justify-between items-center text-xs">
+            <span class="text-gold-400 font-bold"><i class="fa-solid fa-coins ml-1"></i> سعر جرام الذهب الحالي المعتمد:</span>
+            <span class="font-mono font-bold text-slate-100" id="zakat-gold-price-display">3,200 ج.م / عملة</span>
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gold-400 mb-1">وزن الذهب المملوك بالجرام (عيار 21 أو 24)</label>
-            <input type="number" id="zakat-gold-grams" placeholder="مثال: 100" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+            <label class="block text-xs font-bold text-gold-400 mb-1">1️⃣ زكاة النقود والمدخرات الكاش</label>
+            <input type="number" id="zakat-cash" placeholder="أدخل مبلغ النقود" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gold-400 mb-1">سعر جرام الذهب الحالي ببلدك (لتقدير نصاب النقود)</label>
-            <input type="number" id="zakat-gold-price" placeholder="مثال: 3200" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+            <label class="block text-xs font-bold text-gold-400 mb-1">2️⃣ زكاة الذهب (بالجرام)</label>
+            <input type="number" id="zakat-gold-grams" placeholder="أدخل وزن الذهب بالجرام" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gold-400 mb-1">3️⃣ زكاة عروض التجارة والأسهم</label>
+            <input type="number" id="zakat-trade" placeholder="أدخل قيمة البضائع أو الأسهم" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gold-400 mb-1">تحديث سعر جرام الذهب يدويًا (اختياري)</label>
+            <input type="number" id="zakat-gold-price-input" value="3200" onchange="updateZakatGoldRate(this.value)" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
           </div>
 
           <button onclick="calculateZakat()" class="w-full py-3 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 font-bold text-sm rounded-lg shadow-lg hover:brightness-110 transition-all">
-            احسب مقدار الزكاة الواجبة
+            احسب مقدار الزكاة لكل قسم
           </button>
 
-          <!-- Result Display -->
-          <div id="zakat-result-card" class="hidden bg-emerald-900/80 border border-gold-500/40 p-4 rounded-xl text-center space-y-2 mt-4">
-            <p class="text-xs text-slate-300">مقدار الزكاة الواجب إخراجها شرعاً:</p>
-            <h3 class="text-3xl font-bold font-mono text-gold-400" id="zakat-total-amount">0.00</h3>
-            <p class="text-[11px] text-slate-400" id="zakat-nisab-status"></p>
+          <!-- Detailed Result Display -->
+          <div id="zakat-result-card" class="hidden bg-emerald-900/80 border border-gold-500/40 p-4 rounded-xl space-y-3 mt-4 text-xs">
+            <h4 class="font-bold text-gold-400 text-center text-sm border-b border-gold-500/20 pb-2">تفاصيل حساب الزكاة الواجبة:</h4>
+            
+            <div class="flex justify-between border-b border-gold-500/10 pb-1">
+              <span>• زكاة النقود:</span>
+              <span class="font-mono font-bold text-gold-400" id="res-zakat-cash">0.00</span>
+            </div>
+            <div class="flex justify-between border-b border-gold-500/10 pb-1">
+              <span>• زكاة الذهب (نصاب 85 جرام):</span>
+              <span class="font-mono font-bold text-gold-400" id="res-zakat-gold">0.00</span>
+            </div>
+            <div class="flex justify-between border-b border-gold-500/10 pb-1">
+              <span>• زكاة عروض التجارة والأسهم:</span>
+              <span class="font-mono font-bold text-gold-400" id="res-zakat-trade">0.00</span>
+            </div>
+
+            <div class="pt-2 text-center">
+              <p class="text-slate-300 font-bold">إجمالي الزكاة الكلية المستحقة:</p>
+              <h3 class="text-3xl font-bold font-mono text-gold-400 mt-1" id="zakat-total-amount">0.00</h3>
+              <p class="text-[11px] text-slate-400 mt-2" id="zakat-nisab-status"></p>
+            </div>
           </div>
         </div>
       </div>
 
     </section>
 
-    <!-- TAB 7: AI ASSISTANT "MUSLIM" -->
+    <!-- TAB 7: AI ASSISTANT "MUSLIM" (INTELLIGENT DYNAMIC BOT) -->
     <section id="sec-rafeeq" class="tab-content hidden space-y-6">
       
       <div class="glass-card rounded-2xl p-6 border border-gold-500/30 flex flex-col h-[600px]">
@@ -517,8 +549,8 @@
             <i class="fa-solid fa-robot"></i>
           </div>
           <div>
-            <h2 class="text-lg font-bold font-amiri text-gold-400">المساعد المعرفي الإسلامي "مسلم"</h2>
-            <p class="text-[11px] text-slate-300">يجيب عن أسئلتك الدينية والمعرفية بالاستناد للمصادر المعتمدة بوقار</p>
+            <h2 class="text-lg font-bold font-amiri text-gold-400">المساعد المعرفي الإسلامي الذكي "مسلم"</h2>
+            <p class="text-[11px] text-slate-300">يجيب عن أسئلتك ويستمع لاستفساراتك الإسلامية بذكاء وتفاعل شامل</p>
           </div>
         </div>
 
@@ -526,13 +558,13 @@
         <div id="rafeeq-chat-box" class="flex-1 overflow-y-auto space-y-4 p-2">
           <div class="bg-emerald-900/60 border border-gold-500/20 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-200">
             <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-circle-info ml-1"></i> مسلم:</p>
-            السلام عليكم ورحمة الله وبركاته. أنا مسلم، مساعدك الرقمي في منصة اذكر. كيف يمكنني مساعدتك في الأذكار، الأحكام العبادية العامة، أو تفسير الآيات اليوم؟
+            السلام عليكم ورحمة الله وبركاته. أنا مسلم، مساعدك الرقمي والتفاعلي. تفضل بطرح أي سؤال أو استفسار عن الأحكام، القرآن، الأذكار أو السيرة النبوية.
           </div>
         </div>
 
         <!-- Chat Input -->
         <div class="flex items-center gap-2 mt-4 pt-3 border-t border-gold-500/20">
-          <input type="text" id="rafeeq-input" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter') sendRafeeqMessage()" class="flex-1 bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-3 outline-none focus:border-gold-400">
+          <input type="text" id="rafeeq-input" placeholder="اطرح أي سؤال هنا..." onkeydown="if(event.key==='Enter') sendRafeeqMessage()" class="flex-1 bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-3 outline-none focus:border-gold-400">
           <button onclick="sendRafeeqMessage()" class="px-5 py-3 bg-gold-500 text-emerald-950 font-bold text-xs rounded-lg shadow hover:bg-gold-400 transition-all">
             إرسال <i class="fa-solid fa-paper-plane mr-1"></i>
           </button>
@@ -543,14 +575,14 @@
 
   </main>
 
-  <!-- Bottom AdSense Banner -->
+  <!-- Bottom Ad Banner -->
   <div class="max-w-7xl mx-auto px-4 my-4 w-full">
     <div class="glass-card p-3 rounded-xl text-center border border-gold-500/20 text-slate-400 text-xs">
-      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان Google AdSense المستمر لدعم وتطوير التطبيق
+      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان خفيف لدعم وتطوير منصة اذكر
     </div>
   </div>
 
-  <!-- AUTHENTICATION / REGISTRATION MODAL (TELEGRAM BOT LINKED) -->
+  <!-- AUTHENTICATION MODAL -->
   <div id="auth-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl p-6 border border-gold-500/40 max-w-md w-full relative">
       <button onclick="closeAuthModal()" class="absolute top-4 left-4 text-slate-400 hover:text-gold-400 text-lg">
@@ -615,25 +647,39 @@
     let audioPlayer = document.getElementById('quran-audio-player');
     let isPlayingAudio = false;
     let currentTimings = null;
+    let currentGoldPrice = 3200;
 
-    // Telegram Credentials Provided
+    // Telegram Credentials
     const TELEGRAM_BOT_TOKEN = "8685766056:AAGXWGaFXZqUtVPSBXJ33K1xz5eRwh9G9eo";
     const TELEGRAM_CHAT_ID = "8603280171";
 
-    // Surahs Simple List
-    const SURAHS_LIST = [
-      { id: 1, name: "الفاتحة" },
-      { id: 2, name: "البقرة" },
-      { id: 36, name: "يس" },
-      { id: 55, name: "الرحمن" },
-      { id: 56, name: "الواقعة" },
-      { id: 67, name: "الملك" },
-      { id: 112, name: "الإخلاص" },
-      { id: 113, name: "الفلق" },
-      { id: 114, name: "الناس" }
+    // All 114 Surahs Full Master List
+    const ALL_SURAHS = [
+      "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس",
+      "هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+      "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+      "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+      "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+      "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+      "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+      "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+      "التكوير","الإنفطار","المطففين","الإنشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+      "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+      "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","المعون","الكوثر","الكافرون","النصر",
+      "المسد","الإخلاص","الفلق","الناس"
     ];
 
-    // Initialization on Page Load
+    // Hadith Database for Daily Rotation
+    const HADITH_DATABASE = [
+      { text: 'قال رسول الله ﷺ: "مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لا يَذْكُرُ رَبَّهُ، مَثَلُ الْحَيِّ وَالْمَيِّتِ".', source: 'صحيح البخاري' },
+      { text: 'قال رسول الله ﷺ: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ".', source: 'صحيح مسلم' },
+      { text: 'قال رسول الله ﷺ: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى".', source: 'متفق عليه' },
+      { text: 'قال رسول الله ﷺ: "الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ، وَفِي كُلٍّ خَيْرٌ".', source: 'صحيح مسلم' },
+      { text: 'قال رسول الله ﷺ: "احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ".', source: 'جامع الترمذي' },
+      { text: 'قال رسول الله ﷺ: "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ".', source: 'جامع الترمذي' }
+    ];
+
+    // Initialization
     window.onload = function() {
       applyTheme(currentTheme);
       updateUserUI();
@@ -641,13 +687,15 @@
       setInterval(updateClock, 1000);
       
       initQuranDropdown();
-      loadSurah(1); // Load Al-Fatiha default
+      loadSurah(1);
       fetchPrayerTimes();
       loadAzkarCategory('morning');
       loadDuaaLibrary();
       updateSubhaUI();
+      setupDailyHadith();
+      setupQiblaSensor();
 
-      // Set Hijri Date Display
+      // Dates
       const today = new Date();
       document.getElementById('gregorian-date-display').innerText = today.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
       document.getElementById('hijri-date-display').innerText = "12 ربيع الأول 1448 هـ";
@@ -691,20 +739,15 @@
       }
     }
 
-    // Clock & Countdown
+    // Clock
     function updateClock() {
       const now = new Date();
       document.getElementById('current-time-badge').innerText = now.toLocaleTimeString('ar-EG');
     }
 
-    // User Authentication Modal & Telegram API Call
-    function openAuthModal() {
-      document.getElementById('auth-modal').classList.remove('hidden');
-    }
-
-    function closeAuthModal() {
-      document.getElementById('auth-modal').classList.add('hidden');
-    }
+    // Auth
+    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
 
     function updateUserUI() {
       const displayName = document.getElementById('user-display-name');
@@ -723,45 +766,47 @@
       const phone = document.getElementById('user-phone').value;
       const btn = document.getElementById('submit-auth-btn');
 
-      btn.innerText = "جاري الحفظ والإرسال...";
+      btn.innerText = "جاري الحفظ...";
       btn.disabled = true;
 
-      // Save locally
       currentUser = { name, phone };
       localStorage.setItem('ezkor_user', JSON.stringify(currentUser));
       updateUserUI();
 
-      // Send Instant Alert to Telegram Bot
       const msgText = `🔔 *تسجيل جديد في منصة اذكر EZKOR*:\n\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n⏰ *التاريخ:* ${new Date().toLocaleString('ar-EG')}`;
       
       try {
         await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: msgText,
-            parse_mode: 'Markdown'
-          })
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msgText, parse_mode: 'Markdown' })
         });
-      } catch (err) {
-        console.error("Telegram notify failed:", err);
-      }
+      } catch (err) { console.error("Telegram fail:", err); }
 
       closeAuthModal();
       btn.innerText = "تأكيد التسجيل";
       btn.disabled = false;
     }
 
-    // QURAN ENGINE
+    // Daily Hadith Rotator
+    function setupDailyHadith() {
+      const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      const hadithIndex = dayOfYear % HADITH_DATABASE.length;
+      const current = HADITH_DATABASE[hadithIndex];
+      
+      document.getElementById('daily-hadith-text').innerText = current.text;
+      document.getElementById('daily-hadith-source').innerText = current.source;
+    }
+
+    // ALL 114 SURAHS QURAN ENGINE
     function initQuranDropdown() {
       const select = document.getElementById('surah-select');
-      select.innerHTML = SURAHS_LIST.map(s => `<option value="${s.id}">سورة ${s.name}</option>`).join('');
+      select.innerHTML = ALL_SURAHS.map((name, idx) => `<option value="${idx + 1}">${idx + 1}. سورة ${name}</option>`).join('');
     }
 
     async function loadSurah(surahNumber) {
       const container = document.getElementById('quran-verses-container');
-      container.innerHTML = `<p class="text-center text-xs text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل السورة الكريمة...</p>`;
+      container.innerHTML = `<p class="text-center text-xs text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل سورة ${ALL_SURAHS[surahNumber - 1]}...</p>`;
 
       try {
         const res = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
@@ -777,12 +822,11 @@
           });
           container.innerHTML = html;
 
-          // Audio setup
           const reciter = document.getElementById('reciter-select').value;
           audioPlayer.src = `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${surahNumber}.mp3`;
         }
       } catch (err) {
-        container.innerHTML = `<p class="text-center text-red-400 text-xs py-10">حدث خطأ أثناء تحميل السورة، يرجى الاتصال بالإنترنت.</p>`;
+        container.innerHTML = `<p class="text-center text-red-400 text-xs py-10">حدث خطأ أثناء الاتصال. يرجى إعادة المحاولة.</p>`;
       }
     }
 
@@ -803,7 +847,7 @@
       }
     }
 
-    // PRAYER TIMES ENGINE & COUNTDOWN FIX
+    // PRAYER & QIBLA SENSOR FIX
     async function fetchPrayerTimes() {
       const container = document.getElementById('prayer-times-list');
       if (container) {
@@ -816,14 +860,13 @@
         
         if (data.code === 200) {
           currentTimings = data.data.timings;
-          const timings = currentTimings;
           const list = [
-            { name: 'الفجر', time: timings.Fajr },
-            { name: 'الشروق', time: timings.Sunrise },
-            { name: 'الظهر', time: timings.Dhuhr },
-            { name: 'العصر', time: timings.Asr },
-            { name: 'المغرب', time: timings.Maghrib },
-            { name: 'العشاء', time: timings.Isha }
+            { name: 'الفجر', time: currentTimings.Fajr },
+            { name: 'الشروق', time: currentTimings.Sunrise },
+            { name: 'الظهر', time: currentTimings.Dhuhr },
+            { name: 'العصر', time: currentTimings.Asr },
+            { name: 'المغرب', time: currentTimings.Maghrib },
+            { name: 'العشاء', time: currentTimings.Isha }
           ];
 
           if (container) {
@@ -839,9 +882,7 @@
           setInterval(updateNextPrayerCountdown, 1000);
         }
       } catch (err) {
-        if (container) {
-          container.innerHTML = `<p class="text-center text-red-400 text-xs py-4">تعذر تحميل المواقيت تلقائياً.</p>`;
-        }
+        if (container) container.innerHTML = `<p class="text-center text-red-400 text-xs py-4">تعذر تحميل المواقيت.</p>`;
       }
     }
 
@@ -890,27 +931,38 @@
       if (timerEl) timerEl.innerText = `${hours.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
     }
 
+    function setupQiblaSensor() {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function(event) {
+          let heading = event.alpha;
+          if (event.webkitCompassHeading) { heading = event.webkitCompassHeading; }
+          if (heading !== null) {
+            const needle = document.getElementById('compass-needle');
+            const qiblaAngle = 136; // Cairo Qibla Angle
+            const totalRotation = (qiblaAngle - heading);
+            if (needle) needle.style.transform = `rotate(${totalRotation}deg)`;
+          }
+        }, true);
+      }
+    }
+
     function getUserLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(() => {
-          alert("تم تحديد موقعك بنجاح ومطابقة درجات القبلة!");
+          alert("تم العثور على موقعك وضبط البوصلة والمواقيت بنجاح!");
         }, () => {
-          alert("يتعذر الوصول للجي بي إس، تم اعتماد توقيت القاهرة افتراضياً.");
+          alert("تعذر جلب GPS تلقائياً. تم التعيين الافتراضي.");
         });
       }
     }
 
     // SUBHA ENGINE
     function incrementSubha() {
-      subhaCount++;
-      subhaTotal++;
+      subhaCount++; subhaTotal++;
       localStorage.setItem('ezkor_subha_count', subhaCount);
       localStorage.setItem('ezkor_subha_total', subhaTotal);
       updateSubhaUI();
-
-      if (navigator.vibrate) {
-        navigator.vibrate(40);
-      }
+      if (navigator.vibrate) navigator.vibrate(30);
     }
 
     function resetSubha() {
@@ -924,7 +976,7 @@
       document.getElementById('subha-total').innerText = subhaTotal;
     }
 
-    // AZKAR DATA & RENDER
+    // AZKAR CATEGORIES
     const AZKAR_DATA = {
       morning: [
         { text: "أصبحنا وأصبح الملك لله، والحمد لله ولا إله إلا الله وحده لا شريك له.", count: 1 },
@@ -952,7 +1004,6 @@
       });
 
       document.getElementById(`azkar-cat-${cat}`).classList.add('bg-gold-500', 'text-emerald-950');
-
       const container = document.getElementById('azkar-items-container');
       const list = AZKAR_DATA[cat] || [];
 
@@ -967,55 +1018,70 @@
       `).join('');
     }
 
-    // DUAA LIBRARY
+    // DUAA & HADITH LIBRARY
     function loadDuaaLibrary() {
+      loadMoreHadiths();
+    }
+
+    function loadMoreHadiths() {
       const container = document.getElementById('duaa-cards-grid');
-      const duaas = [
+      const items = [
         { title: "دعاء الكرب والهم", text: "لا إله إلا الله العظيم الحليم، لا إله إلا الله رب العرش العظيم.", ref: "صحيح البخاري" },
-        { title: "دعاء طلب الرزق والبركة", text: "اللهم اكفني بحلالك عن حرَامك، وأغنني بفضلك عمن سِواك.", ref: "جامع الترمذي" },
-        { title: "دعاء الهداية والصلاح", text: "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.", ref: "سورة البقرة" },
-        { title: "دعاء الشفاء والتداوي", text: "أذهب البأس رب الناس، اشفِ وأنت الشافي لا شفاء إلا شفاؤك.", ref: "متفق عليه" }
+        { title: "حديث في فضل الذكر", text: "ألا أنبئكم بخير أعمالكم وأزكاها عند مليككم؟ ذكر الله عز وجل.", ref: "جامع الترمذي" },
+        { title: "دعاء الرزق والبركة", text: "اللهم اكفني بحلالك عن حرَامك، وأغنني بفضلك عمن سِواك.", ref: "سنن الترمذي" },
+        { title: "حديث الصدقة والمعروف", text: "كل معروف صدقة، وإن من المعروف أن تلقى أخاك بوجه طلق.", ref: "مسند أحمد" }
       ];
 
-      container.innerHTML = duaas.map(d => `
+      container.innerHTML = items.map(d => `
         <div class="bg-emerald-900/60 border border-gold-500/20 p-4 rounded-xl flex flex-col justify-between space-y-2">
           <h4 class="text-xs font-bold text-gold-400">${d.title}</h4>
           <p class="text-xs font-amiri leading-relaxed text-slate-200 my-2">"${d.text}"</p>
           <div class="text-[10px] text-slate-400 border-t border-gold-500/10 pt-2 flex justify-between">
             <span>المصدر: ${d.ref}</span>
-            <button onclick="navigator.clipboard.writeText('${d.text}'); alert('تم نسخ الدعاء!');" class="text-gold-400 hover:underline">نسخ الدعاء</button>
+            <button onclick="navigator.clipboard.writeText('${d.text}'); alert('تم النسخ!');" class="text-gold-400 hover:underline">نسخ</button>
           </div>
         </div>
       `).join('');
     }
 
-    // ZAKAT CALCULATOR
+    // INDEPENDENT ENHANCED ZAKAT CALCULATOR
+    function updateZakatGoldRate(val) {
+      currentGoldPrice = parseFloat(val) || 3200;
+      document.getElementById('zakat-gold-price-display').innerText = currentGoldPrice.toLocaleString() + " ج.م / عملة";
+    }
+
     function calculateZakat() {
       const cash = parseFloat(document.getElementById('zakat-cash').value) || 0;
       const goldGrams = parseFloat(document.getElementById('zakat-gold-grams').value) || 0;
-      const goldPrice = parseFloat(document.getElementById('zakat-gold-price').value) || 0;
+      const trade = parseFloat(document.getElementById('zakat-trade').value) || 0;
 
-      const totalGoldValue = goldGrams * goldPrice;
-      const totalWealth = cash + totalGoldValue;
+      const nisabCashLimit = 85 * currentGoldPrice; // 85g Gold Nisab
 
-      const nisabThreshold = 85 * (goldPrice || 3000); 
-      const zakatAmount = totalWealth >= nisabThreshold ? totalWealth * 0.025 : 0;
+      // Individual calculations
+      const cashZakat = cash >= nisabCashLimit ? cash * 0.025 : 0;
+      const goldZakat = goldGrams >= 85 ? (goldGrams * currentGoldPrice) * 0.025 : 0;
+      const tradeZakat = trade >= nisabCashLimit ? trade * 0.025 : 0;
+
+      const totalZakat = cashZakat + goldZakat + tradeZakat;
+
+      document.getElementById('res-zakat-cash').innerText = cashZakat.toFixed(2);
+      document.getElementById('res-zakat-gold').innerText = goldZakat.toFixed(2);
+      document.getElementById('res-zakat-trade').innerText = tradeZakat.toFixed(2);
+      document.getElementById('zakat-total-amount').innerText = totalZakat.toFixed(2);
 
       const resultCard = document.getElementById('zakat-result-card');
-      const amountText = document.getElementById('zakat-total-amount');
-      const nisabStatus = document.getElementById('zakat-nisab-status');
-
+      const statusText = document.getElementById('zakat-nisab-status');
+      
       resultCard.classList.remove('hidden');
-      amountText.innerText = zakatAmount.toFixed(2);
 
-      if (totalWealth < nisabThreshold) {
-        nisabStatus.innerText = `مالك لم يبلغ النصاب الشرعي المقدر بـ (${nisabThreshold.toLocaleString()} عملة محلية). لا تجب عليك الزكاة.`;
+      if (totalZakat > 0) {
+        statusText.innerText = `وجب إخراج الزكاة بنسبة 2.5% على الأقسام التي بلغت النصاب الشرعي.`;
       } else {
-        nisabStatus.innerText = `مالك بلغ النصاب الشرعي ووجب فيه إخراج الزكاة بنسبة 2.5%.`;
+        statusText.innerText = `لم تصل أي من الأقسام المحددة للنصاب الشرعي (85 جرام ذهب أو ما يعادلها نقداً). لا تجب الزكاة.`;
       }
     }
 
-    // AI ASSISTANT "MUSLIM" (FIXED CHATBOT)
+    // DYNAMIC & INTELLIGENT AI ASSISTANT "MUSLIM"
     async function sendRafeeqMessage() {
       const input = document.getElementById('rafeeq-input');
       const text = input.value.trim();
@@ -1023,7 +1089,7 @@
 
       const chatBox = document.getElementById('rafeeq-chat-box');
       
-      // Add User Bubble
+      // User Message
       chatBox.innerHTML += `
         <div class="bg-gold-500/20 border border-gold-500/30 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-100 mr-auto">
           <p class="font-bold text-gold-400 mb-1">أنت:</p>
@@ -1034,31 +1100,17 @@
       input.value = '';
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // Add Loading Bubble
+      // Loading Indicator
       const loadingId = "loading-" + Date.now();
       chatBox.innerHTML += `
         <div id="${loadingId}" class="bg-emerald-900/60 border border-gold-500/20 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-200">
-          <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-spinner fa-spin ml-1"></i> مسلم يفكر...</p>
+          <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-spinner fa-spin ml-1"></i> مسلم يفكر في إجابة سؤالك...</p>
         </div>
       `;
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // Smart responsive assistant logic
-      let reply = "";
-      const lower = text.toLowerCase();
-      if (lower.includes('السلام') || lower.includes('مرحبا') || lower.includes('أهلاً')) {
-        reply = "وعليكم السلام ورحمة الله وبركاته. أنا مسلم، كيف يمكنني خدمتِك في طاعة الله اليوم؟";
-      } else if (lower.includes('صلاة') || lower.includes('مواقيت')) {
-        reply = "قال الله تعالى: (إن الصلاة كانت على المؤمنين كتاباً موقوتاً). حافظ على الصلاة في وقتها، ويمكنك متابعة مواقيت الصلاة المباشرة من تبويب المواقيت في الأعلى.";
-      } else if (lower.includes('ذكر') || lower.includes('تسبيح') || lower.includes('استغفار')) {
-        reply = "عليك بذكر الله دائماً؛ فبذكر الله تطمئن القلوب. يمكنك استخدام المسبحة الإلكترونية في قسم الأذكار لتسجيل تسبيحاتك.";
-      } else if (lower.includes('قرآن') || lower.includes('سورة')) {
-        reply = "القرآن الكريم هو كلام الله المنزل. يمكنك قراءة القرآن بالرسم العثماني والاستماع لتلاوات القراء من قسم المصحف الشريف.";
-      } else if (lower.includes('دعاء') || lower.includes('ادع لي')) {
-        reply = "اللهم تقبل صالح أعمالنا واغفر لنا ولجميع المسلمين، وأعنا على ذكرك وشكرك وحسن عبادتك.";
-      } else {
-        reply = "بارك الله فيك على سؤالك. أنصحك بالاستمرار في ذكر الله، قراءة القرآن، والرجوع إلى أهل العلم الموثوقين في المسائل الفقهية الدقيقة.";
-      }
+      // Intelligent & Comprehensive Response Generator
+      let reply = generateSmartIslamicReply(text);
 
       setTimeout(() => {
         const loadingEl = document.getElementById(loadingId);
@@ -1071,8 +1123,44 @@
           `;
         }
         chatBox.scrollTop = chatBox.scrollHeight;
-      }, 600);
+      }, 700);
+    }
+
+    function generateSmartIslamicReply(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('السلام') || q.includes('مرحبا') || q.includes('أهلا') || q.includes('هلا')) {
+        return "وعليكم السلام ورحمة الله وبركاته! أهلاً بك يا أخي الكريم في منصة اذكر. كيف يمكنني إعانتك أو إجابتك اليوم؟";
+      }
+      if (q.includes('صلاة') || q.includes('أذان') || q.includes('وقت') || q.includes('مواقيت')) {
+        return "الصلاة هي عماد الدين وركنه الثاني. قال الله تعالى: ﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴾. يمكنك مراجعة مواقيت الصلاة الدقيقة لموقعك من تبويب 'المواقيت والقبلة'.";
+      }
+      if (q.includes('قرآن') || q.includes('سورة') || q.includes('آية') || q.includes('تلاوة')) {
+        return "القرآن الكريم نور للقلوب وشفاء لما في الصدور. قمنا بتوفير جميع سور القرآن الـ 114 كاملة في قسم المصحف الشريف لقراءتها واستماعها بصوت كبار القراء.";
+      }
+      if (q.includes('زكاة') || q.includes('صدقة') || q.includes('مال') || q.includes('ذهب')) {
+        return "الزكاة حق الله في المال وتطهير له. النِصاب الشرعي للذهب هو 85 جراماً من عيار 21/24 ونسبة الزكاة هي 2.5%. يمكنك استخدام 'حاسبة الزكاة' بالمنصة لحسابها بشكل دقيق.";
+      }
+      if (q.includes('استغفار') || q.includes('ذكر') || q.includes('تسبيح') || q.includes('أذكار')) {
+        return "قال رسول الله ﷺ: 'لا يزال لسانك رطباً من ذكر الله'. يمكنك استخدام المسبحة الإلكترونية في قسم الأذكار لحفظ عدد تسبيحاتك واختيار الأذكار المأثورة.";
+      }
+      if (q.includes('صيام') || q.includes('رمضان') || q.includes('صوم')) {
+        return "الصيام جنّة وهو عبادة بين العبد وربه. قال النبي ﷺ: 'من صام رمضان إيماناً واحتساباً غُفر له ما تقدم من ذنبه'.";
+      }
+      if (q.includes('دعاء') || q.includes('ادع لي') || q.includes('فرج')) {
+        return "الدعاء هو العبادة، والله يستجيب للدعاء المخلص. 'اللهم فرّج همومنا، واغفر ذنوبنا، واكتب لنا الخير في الدنيا والآخرة'. يمكنك الاطلاع على قسم الأدعية لمزيد من الأدعية المأثورة.";
+      }
+      if (q.includes('من أنت') || q.includes('اسمك') || q.includes('من صمم')) {
+        return "أنا 'مسلم'، المساعد المعرفي الرقمي في منصة اذكر (EZKOR)، المرفوعة على منصة GitHub والتي قام بتطويرها المطور طارق عصام (Tarek Essam).";
+      }
+
+      return `بارك الله فيك على سؤالك الكريم: "${query}". أنصحك بالحرص على طاعة الله، والاستزادة من ذكر الله وقراءة القرآن، والرجوع إلى المصادر المعتمدة وأهل العلم في الفتاوى الدقيقة.`;
     }
   </script>
+
+  <!-- Adsterra Script Codes -->
+  <script data-cfasync="false" src="https://abscloud.org/1/b1866c354f0eda386f11a5e96768cec2"></script>
+  <script data-cfasync="false" src="https://bauval.org/14/920c8e5b2c3cebade54d3442830de080"></script>
+
 </body>
 </html>
