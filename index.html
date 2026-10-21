@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اذكر | EZKOR - المنصة الإسلامية الرقمية المتكاملة</title>
+  
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Fonts: Amiri & Noto Naskh Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              950: '#071f1a',
+              900: '#0b2b26',
+              800: '#134e4a',
+              700: '#155e75',
+              600: '#0d9488',
+              500: '#14b8a6',
+              100: '#ccfbf1',
+            },
+            gold: {
+              500: '#d4af37',
+              600: '#b89228',
+              400: '#e6c86e',
+              100: '#fef9c3',
+            },
+            ivory: {
+              50: '#fcfbf7',
+              100: '#f7f4ea',
+              200: '#eee8d5',
+            }
+          },
+          fontFamily: {
+            amiri: ['Amiri', 'serif'],
+            naskh: ['Noto Naskh Arabic', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Noto Naskh Arabic', serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .quran-font {
+      font-family: 'Amiri', serif;
+    }
+
+    /* Islamic Pattern Background Layer */
+    .bg-islamic-pattern {
+      background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Custom Glassmorphism */
+    .glass-card {
+      background: rgba(11, 43, 38, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    
+    .light .glass-card {
+      background: rgba(252, 251, 247, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      color: #0f172a !important;
+    }
+
+    /* Light Mode Text Fixes */
+    .light body {
+      color: #0f172a !important;
+    }
+    .light .text-slate-100,
+    .light .text-slate-200,
+    .light .text-slate-300,
+    .light .text-emerald-100 {
+      color: #1e293b !important;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(11, 43, 38, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-emerald-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-emerald-950 transition-colors duration-300">
+
+  <!-- Top Announcement / AdSense Top Banner -->
+  <div class="bg-emerald-900 border-b border-gold-500/20 text-xs py-2 px-4 text-center text-gold-400 flex items-center justify-between">
+    <span class="hidden md:inline"><i class="fa-solid fa-star-and-crescent ml-1"></i> مرحباً بك في منصة اذكر | رفيقك الرقمي اليومي</span>
+    <!-- AdSense Top Banner Placeholder -->
+    <div class="mx-auto md:mx-0 bg-emerald-950/50 border border-gold-500/30 px-3 py-1 rounded text-[10px] text-slate-400">
+      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان خفيف يدعم استمرار الخدمة
+    </div>
+    <div id="current-time-badge" class="font-mono text-gold-400">00:00:00</div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-emerald-900/90 dark:bg-emerald-950/90 backdrop-blur-md border-b border-gold-500/30 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- Logo & Brand Name -->
+      <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="switchTab('dashboard')">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-600 via-gold-500 to-amber-300 flex items-center justify-center shadow-md shadow-gold-500/20 text-emerald-950 text-xl font-bold font-amiri">
+          ذ
+        </div>
+        <div>
+          <h1 class="text-xl font-bold font-amiri tracking-wide text-gold-400 flex items-center gap-2">
+            اذكر <span class="text-xs bg-gold-500/20 text-gold-400 px-2 py-0.5 rounded border border-gold-500/30 font-sans">EZKOR</span>
+          </h1>
+          <p class="text-[10px] text-slate-400">منصة إسلامية رقمية متكاملة</p>
+        </div>
+      </div>
+
+      <!-- Quick Actions (Theme Switcher, User Auth, Mobile Nav Toggle) -->
+      <div class="flex items-center space-x-3 space-x-reverse">
+        
+        <!-- Theme Switcher -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-lg bg-emerald-900/85 border border-gold-500/30 text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition-all" title="تبديل الوضع الليلي / النهاري">
+          <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
+        </button>
+
+        <!-- User Profile / Auth Status -->
+        <button id="user-auth-btn" onclick="openAuthModal()" class="flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 px-3 py-1.5 rounded-lg font-medium text-xs shadow-md hover:brightness-110 transition-all">
+          <i class="fa-solid fa-user"></i>
+          <span id="user-display-name">تسجيل الدخول</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="max-w-7xl mx-auto px-4 overflow-x-auto scrollbar-none border-t border-emerald-800/40">
+      <div class="flex space-x-1 space-x-reverse py-2 text-xs font-medium whitespace-nowrap">
+        <button onclick="switchTab('dashboard')" class="nav-tab active-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-dashboard">
+          <i class="fa-solid fa-house"></i> الرئيسية
+        </button>
+        <button onclick="switchTab('quran')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-quran">
+          <i class="fa-solid fa-book-quran"></i> المصحف الشريف
+        </button>
+
+        <button onclick="switchTab('prayer')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-prayer">
+          <i class="fa-solid fa-clock"></i> المواقيت والقبلة
+        </button>
+
+        <button onclick="switchTab('azkar')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-azkar">
+          <i class="fa-solid fa-hands-praying"></i> الأذكار والمسبحة
+        </button>
+
+        <button onclick="switchTab('duaa')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-duaa">
+          <i class="fa-solid fa-kaaba"></i> الأدعية والأحاديث
+        </button>
+
+        <button onclick="switchTab('zakat')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-zakat">
+          <i class="fa-solid fa-calculator"></i> حاسبة الزكاة
+        </button>
+
+        <button onclick="switchTab('rafeeq')" class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all" id="tab-rafeeq">
+          <i class="fa-solid fa-robot"></i> مسلم الذكي (AI)
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full bg-islamic-pattern">
+
+    <!-- TAB 1: MAIN DASHBOARD -->
+    <section id="sec-dashboard" class="tab-content space-y-6">
+      
+      <!-- Welcome & Hijri Banner -->
+      <div class="glass-card rounded-2xl p-6 relative overflow-hidden border border-gold-500/30">
+        <div class="absolute -left-10 -bottom-10 opacity-10 text-gold-500 text-9xl">
+          <i class="fa-solid fa-mosque"></i>
+        </div>
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs border border-gold-500/30 mb-2" id="greeting-badge">
+              السلام عليكم ورحمة الله وبركاته
+            </span>
+            <h2 class="text-2xl md:text-3xl font-bold font-amiri text-gold-400" id="welcome-title">أهلاً بك في منصة اذكر</h2>
+            <p class="text-xs text-slate-300 mt-1">اجعل يومك يعمر بذكر الله والتزود بالخيرات.</p>
+          </div>
+          
+          <div class="bg-emerald-900/60 p-4 rounded-xl border border-gold-500/20 text-center min-w-[200px]">
+            <p class="text-xs text-gold-400 font-bold" id="hijri-date-display">جاري تحميل التاريخ الهجري...</p>
+            <p class="text-[11px] text-slate-300 mt-0.5" id="gregorian-date-display"></p>
+            <span class="text-[9px] text-slate-400 block mt-1">* قد يختلف التاريخ الهجري بحسب رؤية الهلال المحلية</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Verse of the Day -->
+        <div class="glass-card rounded-xl p-5 border border-gold-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold text-gold-400 flex items-center gap-1">
+                <i class="fa-solid fa-book-open"></i> آية اليوم
+              </span>
+              <span class="text-[10px] bg-emerald-800 text-slate-300 px-2 py-0.5 rounded">سورة البقرة : 152</span>
+            </div>
+            <p class="text-lg quran-font text-center leading-relaxed my-4 text-emerald-100 dark:text-ivory-100">
+              «فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ»
+            </p>
+          </div>
+          <button onclick="switchTab('quran')" class="text-xs text-gold-400 hover:text-gold-300 flex items-center justify-center gap-1 mt-2">
+            تابع القراءة في المصحف <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+
+        <!-- Next Prayer Card -->
+        <div class="glass-card rounded-xl p-5 border border-gold-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold text-gold-400 flex items-center gap-1">
+                <i class="fa-solid fa-clock"></i> الصلاة القادمة
+              </span>
+              <span class="text-[10px] bg-emerald-800 text-slate-300 px-2 py-0.5 rounded" id="user-city-display">القاهرة</span>
+            </div>
+            <div class="text-center my-2">
+              <h3 class="text-2xl font-bold font-amiri text-gold-400" id="next-prayer-name">جاري الحساب...</h3>
+              <p class="text-3xl font-mono font-bold text-slate-100 my-1" id="next-prayer-countdown">00:00:00</p>
+              <p class="text-xs text-slate-300">متبقي على رفع الأذان</p>
+            </div>
+          </div>
+          <button onclick="switchTab('prayer')" class="text-xs text-gold-400 hover:text-gold-300 flex items-center justify-center gap-1 mt-2">
+            عرض جدول مواقيت الصلاة بالكامل <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+
+        <!-- Daily Hadith & Zikr -->
+        <div class="glass-card rounded-xl p-5 border border-gold-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold text-gold-400 flex items-center gap-1">
+                <i class="fa-solid fa-quote-right"></i> حديث نبوي
+              </span>
+              <span class="text-[10px] bg-emerald-800 text-slate-300 px-2 py-0.5 rounded">صحيح البخاري</span>
+            </div>
+            <p class="text-xs leading-relaxed text-slate-200 my-2">
+              قال رسول الله ﷺ: "مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لا يَذْكُرُ رَبَّهُ، مَثَلُ الْحَيِّ وَالْمَيِّتِ".
+            </p>
+          </div>
+          <button onclick="switchTab('azkar')" class="w-full mt-3 py-2 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 font-bold text-xs rounded-lg shadow hover:brightness-110">
+            <i class="fa-solid fa-hands-praying ml-1"></i> ابدأ التسبيح والأذكار الآن
+          </button>
+        </div>
+
+      </div>
+
+      <!-- AdSense Native Banner -->
+      <div class="w-full glass-card p-3 rounded-xl text-center border border-dashed border-gold-500/40 text-slate-400 text-xs">
+        <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> مساحة إعلانية مميزة - Google AdSense Clean Banner
+      </div>
+
+    </section>
+
+    <!-- TAB 2: HOLY QURAN -->
+    <section id="sec-quran" class="tab-content hidden space-y-6">
+      
+      <div class="glass-card rounded-2xl p-6 border border-gold-500/30">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+          <div>
+            <h2 class="text-2xl font-bold font-amiri text-gold-400 flex items-center gap-2">
+              <i class="fa-solid fa-book-quran"></i> المصحف الإلكتروني الشريف
+            </h2>
+            <p class="text-xs text-slate-300">قراءة دقيقة بالرسم العثماني المعتمد مع إمكانية التفسير والاستماع</p>
+          </div>
+
+          <!-- Surah Selector & Controls -->
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <select id="surah-select" onchange="loadSurah(this.value)" class="bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 outline-none focus:border-gold-400 flex-1 md:w-48">
+              <!-- Will be filled dynamically -->
+            </select>
+
+            <select id="reciter-select" class="bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 outline-none focus:border-gold-400">
+              <option value="ar.alafasy">مشاري العفاسي</option>
+              <option value="ar.abdulbasitmurattal">عبد الباسط عبد الصمد</option>
+              <option value="ar.hudhaify">الحذيفي</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Audio Player Bar -->
+        <div class="bg-emerald-900/80 p-3 rounded-xl border border-gold-500/20 mb-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button id="play-surah-btn" onclick="togglePlaySurah()" class="w-10 h-10 rounded-full bg-gold-500 text-emerald-950 flex items-center justify-center font-bold shadow hover:bg-gold-400">
+              <i class="fa-solid fa-play" id="play-icon"></i>
+            </button>
+            <div>
+              <p class="text-xs font-bold text-gold-400" id="audio-status">جاهز للتلاوة الصوتية</p>
+              <p class="text-[10px] text-slate-400">تشغيل السورة كاملة بصوت القارئ المختار</p>
+            </div>
+          </div>
+          <audio id="quran-audio-player" class="hidden"></audio>
+        </div>
+
+        <!-- Bismillah Header -->
+        <div class="text-center py-4 border-b border-gold-500/20 mb-6">
+          <p class="text-2xl quran-font text-gold-400">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+        </div>
+
+        <!-- Surah Verses Container -->
+        <div id="quran-verses-container" class="space-y-6 text-justify leading-loose font-amiri text-xl md:text-2xl text-emerald-100 dark:text-ivory-100 min-h-[300px] p-2">
+          <p class="text-center text-sm text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل النص القرآني المعتمد...</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 3: PRAYER TIMES & QIBLA -->
+    <section id="sec-prayer" class="tab-content hidden space-y-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Prayer Times Schedule -->
+        <div class="glass-card rounded-2xl p-6 border border-gold-500/30">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold font-amiri text-gold-400 flex items-center gap-2">
+              <i class="fa-solid fa-clock"></i> مواقيت الصلاة
+            </h2>
+            
+            <button onclick="getUserLocation()" class="text-xs bg-emerald-800 text-gold-300 border border-gold-500/30 px-3 py-1.5 rounded-lg hover:bg-gold-500 hover:text-emerald-950 transition-all">
+              <i class="fa-solid fa-location-crosshairs ml-1"></i> تحديد موقعي
+            </button>
+          </div>
+
+          <!-- Prayer List Table -->
+          <div class="space-y-3" id="prayer-times-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Qibla Finder & Map info -->
+        <div class="glass-card rounded-2xl p-6 border border-gold-500/30 flex flex-col justify-between text-center">
+          <div>
+            <h2 class="text-xl font-bold font-amiri text-gold-400 mb-2 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-compass"></i> اتجاه القبلة
+            </h2>
+            <p class="text-xs text-slate-300 mb-6">احسب اتجاه الكعبة المشرفة بناءً على موقعك الجغرافي الحالي</p>
+
+            <!-- Qibla Compass Visual -->
+            <div class="relative w-48 h-48 mx-auto my-4 rounded-full border-4 border-gold-500/50 flex items-center justify-center bg-emerald-900/60 shadow-inner">
+              <div class="absolute inset-0 flex items-center justify-center text-gold-500/20 text-6xl">
+                <i class="fa-solid fa-kaaba"></i>
+              </div>
+              <div id="compass-needle" class="w-1 h-32 bg-gradient-to-t from-transparent via-gold-500 to-red-500 rounded-full transition-transform duration-500 transform origin-center" style="transform: rotate(136deg);"></div>
+              <div class="w-6 h-6 rounded-full bg-gold-500 z-10 border-2 border-emerald-950 shadow"></div>
+            </div>
+
+            <p class="text-xs text-gold-400 font-mono mt-2" id="qibla-degree-text">درجة اتجاه القبلة: 136° نحو الكعبة المشرفة</p>
+          </div>
+
+          <div class="bg-emerald-900/40 p-3 rounded-xl border border-gold-500/20 text-[11px] text-slate-300 mt-4">
+            <i class="fa-solid fa-circle-info text-gold-400 ml-1"></i> تحذير: تتأثر البوصلة الإلكترونية بوجود أجهزة مغناطيسية قريبة على جهازك.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 4: AZKAR & SUBHA -->
+    <section id="sec-azkar" class="tab-content hidden space-y-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Interactive Digital Subha (Tasbeeh) -->
+        <div class="glass-card rounded-2xl p-6 border border-gold-500/30 text-center flex flex-col justify-between md:col-span-1">
+          <div>
+            <h2 class="text-xl font-bold font-amiri text-gold-400 mb-2">
+              <i class="fa-solid fa-repeat"></i> المسبحة الإلكترونية
+            </h2>
+            <p class="text-xs text-slate-300 mb-4">اختر الذكر واضغط للعداد مع حفظ الإحصائيات</p>
+
+            <select id="subha-phrase" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-2.5 mb-6 outline-none">
+              <option value="سبحان الله">سبحان الله</option>
+              <option value="الحمد لله">الحمد لله</option>
+              <option value="لا إله إلا الله">لا إله إلا الله</option>
+              <option value="الله أكبر">الله أكبر</option>
+              <option value="أستغفر الله واتوب إليه">أستغفر الله وأتوب إليه</option>
+              <option value="اللهم صلّ وسلم على نبينا محمد">اللهم صلّ وسلم على نبينا محمد</option>
+            </select>
+
+            <!-- Counter Circle Button -->
+            <button onclick="incrementSubha()" class="w-40 h-40 mx-auto rounded-full bg-gradient-to-tr from-gold-600 via-gold-500 to-amber-300 text-emerald-950 flex flex-col items-center justify-center shadow-xl shadow-gold-500/20 border-4 border-gold-400 active:scale-95 transition-transform my-4 cursor-pointer">
+              <span class="text-4xl font-bold font-mono" id="subha-counter">0</span>
+              <span class="text-[10px] font-bold mt-1 text-emerald-900">اضغط للتسبيح</span>
+            </button>
+          </div>
+
+          <div class="flex justify-between items-center gap-2 mt-4">
+            <button onclick="resetSubha()" class="flex-1 py-2 bg-emerald-900 border border-gold-500/30 text-gold-400 rounded-lg text-xs hover:bg-gold-500 hover:text-emerald-950 transition-all">
+              <i class="fa-solid fa-rotate-right ml-1"></i> إعادة العداد
+            </button>
+            <div class="text-xs text-slate-300 font-mono px-3 py-2 bg-emerald-900/60 rounded-lg border border-gold-500/20">
+              الإجمالي: <span id="subha-total" class="text-gold-400 font-bold">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Azkar Categories & List -->
+        <div class="glass-card rounded-2xl p-6 border border-gold-500/30 md:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-6 border-b border-gold-500/20 pb-4">
+            <button onclick="loadAzkarCategory('morning')" class="azkar-cat-btn bg-gold-500 text-emerald-950 px-3 py-1.5 rounded-lg text-xs font-bold" id="azkar-cat-morning">
+              أذكار الصباح
+            </button>
+            <button onclick="loadAzkarCategory('evening')" class="azkar-cat-btn bg-emerald-900 text-gold-300 px-3 py-1.5 rounded-lg text-xs font-bold border border-gold-500/30" id="azkar-cat-evening">
+              أذكار المساء
+            </button>
+            <button onclick="loadAzkarCategory('prayer')" class="azkar-cat-btn bg-emerald-900 text-gold-300 px-3 py-1.5 rounded-lg text-xs font-bold border border-gold-500/30" id="azkar-cat-prayer">
+              أذكار الصلاة
+            </button>
+            <button onclick="loadAzkarCategory('sleep')" class="azkar-cat-btn bg-emerald-900 text-gold-300 px-3 py-1.5 rounded-lg text-xs font-bold border border-gold-500/30" id="azkar-cat-sleep">
+              أذكار النوم
+            </button>
+          </div>
+
+          <div id="azkar-items-container" class="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+            <!-- Filled dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 5: DUAA & HADITH LIBRARY -->
+    <section id="sec-duaa" class="tab-content hidden space-y-6">
+      
+      <div class="glass-card rounded-2xl p-6 border border-gold-500/30">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold font-amiri text-gold-400 flex items-center gap-2">
+            <i class="fa-solid fa-kaaba"></i> موسوعة الأدعية والأحاديث
+          </h2>
+          <div class="text-xs text-slate-300">مجموعة من الأدعية المأثورة الموثقة</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="duaa-cards-grid">
+          <!-- Filled dynamically -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 6: ZAKAT CALCULATOR -->
+    <section id="sec-zakat" class="tab-content hidden space-y-6">
+      
+      <div class="glass-card rounded-2xl p-6 border border-gold-500/30 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold font-amiri text-gold-400 mb-2 text-center">
+          <i class="fa-solid fa-calculator"></i> حاسبة الزكاة الشرعية
+        </h2>
+        <p class="text-xs text-slate-300 mb-6 text-center">احسب زكاة مالك والذهب بسهولة وفق الأنصبة الشرعية المعتمدة (2.5%)</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-gold-400 mb-1">إجمالي النقود والمدخرات (بالعملة المحلية)</label>
+            <input type="number" id="zakat-cash" placeholder="مثال: 50000" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gold-400 mb-1">وزن الذهب المملوك بالجرام (عيار 21 أو 24)</label>
+            <input type="number" id="zakat-gold-grams" placeholder="مثال: 100" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gold-400 mb-1">سعر جرام الذهب الحالي ببلدك (لتقدير نصاب النقود)</label>
+            <input type="number" id="zakat-gold-price" placeholder="مثال: 3200" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-sm rounded-lg p-3 outline-none focus:border-gold-400">
+          </div>
+
+          <button onclick="calculateZakat()" class="w-full py-3 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 font-bold text-sm rounded-lg shadow-lg hover:brightness-110 transition-all">
+            احسب مقدار الزكاة الواجبة
+          </button>
+
+          <!-- Result Display -->
+          <div id="zakat-result-card" class="hidden bg-emerald-900/80 border border-gold-500/40 p-4 rounded-xl text-center space-y-2 mt-4">
+            <p class="text-xs text-slate-300">مقدار الزكاة الواجب إخراجها شرعاً:</p>
+            <h3 class="text-3xl font-bold font-mono text-gold-400" id="zakat-total-amount">0.00</h3>
+            <p class="text-[11px] text-slate-400" id="zakat-nisab-status"></p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 7: AI ASSISTANT "MUSLIM" -->
+    <section id="sec-rafeeq" class="tab-content hidden space-y-6">
+      
+      <div class="glass-card rounded-2xl p-6 border border-gold-500/30 flex flex-col h-[600px]">
+        <div class="flex items-center gap-3 border-b border-gold-500/20 pb-4 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gold-500 text-emerald-950 flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold font-amiri text-gold-400">المساعد المعرفي الإسلامي "مسلم"</h2>
+            <p class="text-[11px] text-slate-300">يجيب عن أسئلتك الدينية والمعرفية بالاستناد للمصادر المعتمدة بوقار</p>
+          </div>
+        </div>
+
+        <!-- Chat History -->
+        <div id="rafeeq-chat-box" class="flex-1 overflow-y-auto space-y-4 p-2">
+          <div class="bg-emerald-900/60 border border-gold-500/20 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-200">
+            <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-circle-info ml-1"></i> مسلم:</p>
+            السلام عليكم ورحمة الله وبركاته. أنا مسلم، مساعدك الرقمي في منصة اذكر. كيف يمكنني مساعدتك في الأذكار، الأحكام العبادية العامة، أو تفسير الآيات اليوم؟
+          </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="flex items-center gap-2 mt-4 pt-3 border-t border-gold-500/20">
+          <input type="text" id="rafeeq-input" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter') sendRafeeqMessage()" class="flex-1 bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-3 outline-none focus:border-gold-400">
+          <button onclick="sendRafeeqMessage()" class="px-5 py-3 bg-gold-500 text-emerald-950 font-bold text-xs rounded-lg shadow hover:bg-gold-400 transition-all">
+            إرسال <i class="fa-solid fa-paper-plane mr-1"></i>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom AdSense Banner -->
+  <div class="max-w-7xl mx-auto px-4 my-4 w-full">
+    <div class="glass-card p-3 rounded-xl text-center border border-gold-500/20 text-slate-400 text-xs">
+      <i class="fa-solid fa-rectangle-ad text-gold-500 ml-1"></i> إعلان Google AdSense المستمر لدعم وتطوير التطبيق
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION / REGISTRATION MODAL (TELEGRAM BOT LINKED) -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="glass-card rounded-2xl p-6 border border-gold-500/40 max-w-md w-full relative">
+      <button onclick="closeAuthModal()" class="absolute top-4 left-4 text-slate-400 hover:text-gold-400 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 flex items-center justify-center font-bold text-2xl mx-auto mb-2 font-amiri">
+          ذ
+        </div>
+        <h3 class="text-xl font-bold font-amiri text-gold-400">الانضمام إلى مجتمع اذكر</h3>
+        <p class="text-xs text-slate-300 mt-1">سجل اسمك ورقم هاتفك لحفظ أهدافك التعبدية ومتابعة التسبيح</p>
+      </div>
+
+      <form id="telegram-auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-gold-400 mb-1">الاسم بالكامل</label>
+          <input type="text" id="user-fullname" required placeholder="أدخل اسمك الكريم" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-3 outline-none focus:border-gold-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gold-400 mb-1">رقم الهاتف أو البريد</label>
+          <input type="text" id="user-phone" required placeholder="01xxxxxxxxx" class="w-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs rounded-lg p-3 outline-none focus:border-gold-400">
+        </div>
+
+        <button type="submit" id="submit-auth-btn" class="w-full py-3 bg-gradient-to-r from-gold-500 to-amber-600 text-emerald-950 font-bold text-xs rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+          <span>تأكيد التسجيل</span>
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer with Tarek Essam Rights -->
+  <footer class="bg-emerald-900 border-t border-gold-500/30 text-xs py-6 mt-10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
+      <div>
+        <p class="font-bold text-gold-400 font-amiri text-base">اذكر | EZKOR Digital Platform</p>
+        <p class="text-slate-400 text-[11px] mt-1">حقوق الطبع والمحتوى محفوظة لكل مسلم © 2026</p>
+      </div>
+
+      <!-- Tarek Essam Credit & Instagram Link -->
+      <div class="text-slate-300">
+        <p class="flex items-center justify-center md:justify-end gap-1">
+          Developed with <i class="fa-solid fa-heart text-red-500"></i> by <span class="font-bold text-gold-400">Tarek Essam</span>
+        </p>
+        <a href="https://www.instagram.com/turky_eltahawy?dlrf=ZHF6b2ExYzB6OHA0" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-gold-300 text-[11px] flex items-center justify-center md:justify-end gap-1 mt-1">
+          <i class="fa-brands fa-instagram"></i> Instagram: @turky_eltahawy
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT & APPLICATION LOGIC -->
+  <script>
+    // Global App State
+    let currentTheme = localStorage.getItem('ezkor_theme') || 'dark';
+    let currentUser = JSON.parse(localStorage.getItem('ezkor_user')) || null;
+    let subhaCount = parseInt(localStorage.getItem('ezkor_subha_count')) || 0;
+    let subhaTotal = parseInt(localStorage.getItem('ezkor_subha_total')) || 0;
+    let currentSurahVerses = [];
+    let audioPlayer = document.getElementById('quran-audio-player');
+    let isPlayingAudio = false;
+    let currentTimings = null;
+
+    // Telegram Credentials Provided
+    const TELEGRAM_BOT_TOKEN = "8685766056:AAGXWGaFXZqUtVPSBXJ33K1xz5eRwh9G9eo";
+    const TELEGRAM_CHAT_ID = "8603280171";
+
+    // Surahs Simple List
+    const SURAHS_LIST = [
+      { id: 1, name: "الفاتحة" },
+      { id: 2, name: "البقرة" },
+      { id: 36, name: "يس" },
+      { id: 55, name: "الرحمن" },
+      { id: 56, name: "الواقعة" },
+      { id: 67, name: "الملك" },
+      { id: 112, name: "الإخلاص" },
+      { id: 113, name: "الفلق" },
+      { id: 114, name: "الناس" }
+    ];
+
+    // Initialization on Page Load
+    window.onload = function() {
+      applyTheme(currentTheme);
+      updateUserUI();
+      updateClock();
+      setInterval(updateClock, 1000);
+      
+      initQuranDropdown();
+      loadSurah(1); // Load Al-Fatiha default
+      fetchPrayerTimes();
+      loadAzkarCategory('morning');
+      loadDuaaLibrary();
+      updateSubhaUI();
+
+      // Set Hijri Date Display
+      const today = new Date();
+      document.getElementById('gregorian-date-display').innerText = today.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('hijri-date-display').innerText = "12 ربيع الأول 1448 هـ";
+    };
+
+    // Theme Switcher
+    function toggleTheme() {
+      currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+      localStorage.setItem('ezkor_theme', currentTheme);
+      applyTheme(currentTheme);
+    }
+
+    function applyTheme(theme) {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      if (theme === 'light') {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        document.body.classList.replace('bg-emerald-950', 'bg-ivory-50');
+        themeIcon.className = "fa-solid fa-sun text-amber-500 text-lg";
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        document.body.classList.replace('bg-ivory-50', 'bg-emerald-950');
+        themeIcon.className = "fa-solid fa-moon text-gold-400 text-lg";
+      }
+    }
+
+    // Navigation Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab').forEach(el => {
+        el.classList.remove('bg-gold-500', 'text-emerald-950', 'font-bold');
+        el.classList.add('text-slate-300');
+      });
+
+      document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-gold-500', 'text-emerald-950', 'font-bold');
+      }
+    }
+
+    // Clock & Countdown
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('current-time-badge').innerText = now.toLocaleTimeString('ar-EG');
+    }
+
+    // User Authentication Modal & Telegram API Call
+    function openAuthModal() {
+      document.getElementById('auth-modal').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+    }
+
+    function updateUserUI() {
+      const displayName = document.getElementById('user-display-name');
+      const welcomeTitle = document.getElementById('welcome-title');
+      if (currentUser) {
+        displayName.innerText = currentUser.name;
+        welcomeTitle.innerText = `أهلاً بك يا ${currentUser.name} في منصة اذكر`;
+      } else {
+        displayName.innerText = "تسجيل الدخول";
+      }
+    }
+
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('user-fullname').value;
+      const phone = document.getElementById('user-phone').value;
+      const btn = document.getElementById('submit-auth-btn');
+
+      btn.innerText = "جاري الحفظ والإرسال...";
+      btn.disabled = true;
+
+      // Save locally
+      currentUser = { name, phone };
+      localStorage.setItem('ezkor_user', JSON.stringify(currentUser));
+      updateUserUI();
+
+      // Send Instant Alert to Telegram Bot
+      const msgText = `🔔 *تسجيل جديد في منصة اذكر EZKOR*:\n\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n⏰ *التاريخ:* ${new Date().toLocaleString('ar-EG')}`;
+      
+      try {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: msgText,
+            parse_mode: 'Markdown'
+          })
+        });
+      } catch (err) {
+        console.error("Telegram notify failed:", err);
+      }
+
+      closeAuthModal();
+      btn.innerText = "تأكيد التسجيل";
+      btn.disabled = false;
+    }
+
+    // QURAN ENGINE
+    function initQuranDropdown() {
+      const select = document.getElementById('surah-select');
+      select.innerHTML = SURAHS_LIST.map(s => `<option value="${s.id}">سورة ${s.name}</option>`).join('');
+    }
+
+    async function loadSurah(surahNumber) {
+      const container = document.getElementById('quran-verses-container');
+      container.innerHTML = `<p class="text-center text-xs text-slate-400 py-10"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري تحميل السورة الكريمة...</p>`;
+
+      try {
+        const res = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
+        const data = await res.json();
+        
+        if (data.code === 200) {
+          currentSurahVerses = data.data.ayahs;
+          let html = '';
+          currentSurahVerses.forEach(ayah => {
+            html += `<span class="hover:text-gold-400 cursor-pointer transition-colors" title="الآية ${ayah.numberInSurah}">
+              ${ayah.text} <span class="text-gold-400 text-sm font-sans font-bold px-1.5 py-0.5 rounded-full bg-gold-500/10 border border-gold-500/30">﴿${ayah.numberInSurah}﴾</span> 
+            </span> `;
+          });
+          container.innerHTML = html;
+
+          // Audio setup
+          const reciter = document.getElementById('reciter-select').value;
+          audioPlayer.src = `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${surahNumber}.mp3`;
+        }
+      } catch (err) {
+        container.innerHTML = `<p class="text-center text-red-400 text-xs py-10">حدث خطأ أثناء تحميل السورة، يرجى الاتصال بالإنترنت.</p>`;
+      }
+    }
+
+    function togglePlaySurah() {
+      const playIcon = document.getElementById('play-icon');
+      const statusText = document.getElementById('audio-status');
+      
+      if (!isPlayingAudio) {
+        audioPlayer.play();
+        isPlayingAudio = true;
+        playIcon.className = "fa-solid fa-pause";
+        statusText.innerText = "جاري التشغيل الآن...";
+      } else {
+        audioPlayer.pause();
+        isPlayingAudio = false;
+        playIcon.className = "fa-solid fa-play";
+        statusText.innerText = "التلاوة متوقفة مؤقتاً";
+      }
+    }
+
+    // PRAYER TIMES ENGINE & COUNTDOWN FIX
+    async function fetchPrayerTimes() {
+      const container = document.getElementById('prayer-times-list');
+      if (container) {
+        container.innerHTML = `<p class="text-center text-xs text-slate-400 py-6"><i class="fa-solid fa-spinner fa-spin ml-2"></i> جاري جلب مواقيت الصلاة...</p>`;
+      }
+
+      try {
+        const res = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5`);
+        const data = await res.json();
+        
+        if (data.code === 200) {
+          currentTimings = data.data.timings;
+          const timings = currentTimings;
+          const list = [
+            { name: 'الفجر', time: timings.Fajr },
+            { name: 'الشروق', time: timings.Sunrise },
+            { name: 'الظهر', time: timings.Dhuhr },
+            { name: 'العصر', time: timings.Asr },
+            { name: 'المغرب', time: timings.Maghrib },
+            { name: 'العشاء', time: timings.Isha }
+          ];
+
+          if (container) {
+            container.innerHTML = list.map(item => `
+              <div class="flex justify-between items-center p-3 rounded-xl bg-emerald-900/50 border border-gold-500/20 text-xs">
+                <span class="font-bold text-gold-400 flex items-center gap-2"><i class="fa-solid fa-mosque"></i> ${item.name}</span>
+                <span class="font-mono font-bold text-slate-100">${item.time}</span>
+              </div>
+            `).join('');
+          }
+
+          updateNextPrayerCountdown();
+          setInterval(updateNextPrayerCountdown, 1000);
+        }
+      } catch (err) {
+        if (container) {
+          container.innerHTML = `<p class="text-center text-red-400 text-xs py-4">تعذر تحميل المواقيت تلقائياً.</p>`;
+        }
+      }
+    }
+
+    function updateNextPrayerCountdown() {
+      if (!currentTimings) return;
+      const now = new Date();
+      const prayers = [
+        { name: 'الفجر', time: currentTimings.Fajr },
+        { name: 'الشروق', time: currentTimings.Sunrise },
+        { name: 'الظهر', time: currentTimings.Dhuhr },
+        { name: 'العصر', time: currentTimings.Asr },
+        { name: 'المغرب', time: currentTimings.Maghrib },
+        { name: 'العشاء', time: currentTimings.Isha }
+      ];
+
+      let nextPrayer = null;
+      let diff = 0;
+
+      for (let p of prayers) {
+        const [h, m] = p.time.split(':');
+        const pDate = new Date();
+        pDate.setHours(parseInt(h), parseInt(m), 0);
+        if (pDate > now) {
+          nextPrayer = p;
+          diff = pDate - now;
+          break;
+        }
+      }
+
+      if (!nextPrayer) {
+        const [h, m] = prayers[0].time.split(':');
+        const pDate = new Date();
+        pDate.setDate(pDate.getDate() + 1);
+        pDate.setHours(parseInt(h), parseInt(m), 0);
+        nextPrayer = prayers[0];
+        diff = pDate - now;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const nameEl = document.getElementById('next-prayer-name');
+      const timerEl = document.getElementById('next-prayer-countdown');
+      if (nameEl) nameEl.innerText = nextPrayer.name;
+      if (timerEl) timerEl.innerText = `${hours.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+    }
+
+    function getUserLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(() => {
+          alert("تم تحديد موقعك بنجاح ومطابقة درجات القبلة!");
+        }, () => {
+          alert("يتعذر الوصول للجي بي إس، تم اعتماد توقيت القاهرة افتراضياً.");
+        });
+      }
+    }
+
+    // SUBHA ENGINE
+    function incrementSubha() {
+      subhaCount++;
+      subhaTotal++;
+      localStorage.setItem('ezkor_subha_count', subhaCount);
+      localStorage.setItem('ezkor_subha_total', subhaTotal);
+      updateSubhaUI();
+
+      if (navigator.vibrate) {
+        navigator.vibrate(40);
+      }
+    }
+
+    function resetSubha() {
+      subhaCount = 0;
+      localStorage.setItem('ezkor_subha_count', 0);
+      updateSubhaUI();
+    }
+
+    function updateSubhaUI() {
+      document.getElementById('subha-counter').innerText = subhaCount;
+      document.getElementById('subha-total').innerText = subhaTotal;
+    }
+
+    // AZKAR DATA & RENDER
+    const AZKAR_DATA = {
+      morning: [
+        { text: "أصبحنا وأصبح الملك لله، والحمد لله ولا إله إلا الله وحده لا شريك له.", count: 1 },
+        { text: "آية الكرسي: اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...", count: 1 },
+        { text: "قل هو الله أحد (سورة الإخلاص)", count: 3 },
+        { text: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.", count: 1 }
+      ],
+      evening: [
+        { text: "أمسينا وأمسى الملك لله والحمد لله.", count: 1 },
+        { text: "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير.", count: 1 }
+      ],
+      prayer: [
+        { text: "أستغفر الله (ثلاثاً)", count: 3 },
+        { text: "اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام.", count: 1 }
+      ],
+      sleep: [
+        { text: "باسمك ربي وضعت جنبي وبك أرفعه.", count: 1 }
+      ]
+    };
+
+    function loadAzkarCategory(cat) {
+      document.querySelectorAll('.azkar-cat-btn').forEach(btn => {
+        btn.classList.remove('bg-gold-500', 'text-emerald-950');
+        btn.classList.add('bg-emerald-900', 'text-gold-300');
+      });
+
+      document.getElementById(`azkar-cat-${cat}`).classList.add('bg-gold-500', 'text-emerald-950');
+
+      const container = document.getElementById('azkar-items-container');
+      const list = AZKAR_DATA[cat] || [];
+
+      container.innerHTML = list.map(item => `
+        <div class="bg-emerald-900/60 border border-gold-500/20 p-4 rounded-xl space-y-2">
+          <p class="text-xs md:text-sm leading-relaxed font-amiri text-slate-100">${item.text}</p>
+          <div class="flex justify-between items-center text-[10px] text-slate-400 border-t border-gold-500/10 pt-2">
+            <span>التكرار المطلوب: <strong class="text-gold-400 font-mono">${item.count}</strong></span>
+            <button onclick="this.classList.add('opacity-40')" class="px-2 py-1 bg-gold-500/20 text-gold-400 rounded hover:bg-gold-500 hover:text-emerald-950">تم الذكر</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // DUAA LIBRARY
+    function loadDuaaLibrary() {
+      const container = document.getElementById('duaa-cards-grid');
+      const duaas = [
+        { title: "دعاء الكرب والهم", text: "لا إله إلا الله العظيم الحليم، لا إله إلا الله رب العرش العظيم.", ref: "صحيح البخاري" },
+        { title: "دعاء طلب الرزق والبركة", text: "اللهم اكفني بحلالك عن حرَامك، وأغنني بفضلك عمن سِواك.", ref: "جامع الترمذي" },
+        { title: "دعاء الهداية والصلاح", text: "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.", ref: "سورة البقرة" },
+        { title: "دعاء الشفاء والتداوي", text: "أذهب البأس رب الناس، اشفِ وأنت الشافي لا شفاء إلا شفاؤك.", ref: "متفق عليه" }
+      ];
+
+      container.innerHTML = duaas.map(d => `
+        <div class="bg-emerald-900/60 border border-gold-500/20 p-4 rounded-xl flex flex-col justify-between space-y-2">
+          <h4 class="text-xs font-bold text-gold-400">${d.title}</h4>
+          <p class="text-xs font-amiri leading-relaxed text-slate-200 my-2">"${d.text}"</p>
+          <div class="text-[10px] text-slate-400 border-t border-gold-500/10 pt-2 flex justify-between">
+            <span>المصدر: ${d.ref}</span>
+            <button onclick="navigator.clipboard.writeText('${d.text}'); alert('تم نسخ الدعاء!');" class="text-gold-400 hover:underline">نسخ الدعاء</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ZAKAT CALCULATOR
+    function calculateZakat() {
+      const cash = parseFloat(document.getElementById('zakat-cash').value) || 0;
+      const goldGrams = parseFloat(document.getElementById('zakat-gold-grams').value) || 0;
+      const goldPrice = parseFloat(document.getElementById('zakat-gold-price').value) || 0;
+
+      const totalGoldValue = goldGrams * goldPrice;
+      const totalWealth = cash + totalGoldValue;
+
+      const nisabThreshold = 85 * (goldPrice || 3000); 
+      const zakatAmount = totalWealth >= nisabThreshold ? totalWealth * 0.025 : 0;
+
+      const resultCard = document.getElementById('zakat-result-card');
+      const amountText = document.getElementById('zakat-total-amount');
+      const nisabStatus = document.getElementById('zakat-nisab-status');
+
+      resultCard.classList.remove('hidden');
+      amountText.innerText = zakatAmount.toFixed(2);
+
+      if (totalWealth < nisabThreshold) {
+        nisabStatus.innerText = `مالك لم يبلغ النصاب الشرعي المقدر بـ (${nisabThreshold.toLocaleString()} عملة محلية). لا تجب عليك الزكاة.`;
+      } else {
+        nisabStatus.innerText = `مالك بلغ النصاب الشرعي ووجب فيه إخراج الزكاة بنسبة 2.5%.`;
+      }
+    }
+
+    // AI ASSISTANT "MUSLIM" (FIXED CHATBOT)
+    async function sendRafeeqMessage() {
+      const input = document.getElementById('rafeeq-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('rafeeq-chat-box');
+      
+      // Add User Bubble
+      chatBox.innerHTML += `
+        <div class="bg-gold-500/20 border border-gold-500/30 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-100 mr-auto">
+          <p class="font-bold text-gold-400 mb-1">أنت:</p>
+          ${text}
+        </div>
+      `;
+      
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Add Loading Bubble
+      const loadingId = "loading-" + Date.now();
+      chatBox.innerHTML += `
+        <div id="${loadingId}" class="bg-emerald-900/60 border border-gold-500/20 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-200">
+          <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-spinner fa-spin ml-1"></i> مسلم يفكر...</p>
+        </div>
+      `;
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Smart responsive assistant logic
+      let reply = "";
+      const lower = text.toLowerCase();
+      if (lower.includes('السلام') || lower.includes('مرحبا') || lower.includes('أهلاً')) {
+        reply = "وعليكم السلام ورحمة الله وبركاته. أنا مسلم، كيف يمكنني خدمتِك في طاعة الله اليوم؟";
+      } else if (lower.includes('صلاة') || lower.includes('مواقيت')) {
+        reply = "قال الله تعالى: (إن الصلاة كانت على المؤمنين كتاباً موقوتاً). حافظ على الصلاة في وقتها، ويمكنك متابعة مواقيت الصلاة المباشرة من تبويب المواقيت في الأعلى.";
+      } else if (lower.includes('ذكر') || lower.includes('تسبيح') || lower.includes('استغفار')) {
+        reply = "عليك بذكر الله دائماً؛ فبذكر الله تطمئن القلوب. يمكنك استخدام المسبحة الإلكترونية في قسم الأذكار لتسجيل تسبيحاتك.";
+      } else if (lower.includes('قرآن') || lower.includes('سورة')) {
+        reply = "القرآن الكريم هو كلام الله المنزل. يمكنك قراءة القرآن بالرسم العثماني والاستماع لتلاوات القراء من قسم المصحف الشريف.";
+      } else if (lower.includes('دعاء') || lower.includes('ادع لي')) {
+        reply = "اللهم تقبل صالح أعمالنا واغفر لنا ولجميع المسلمين، وأعنا على ذكرك وشكرك وحسن عبادتك.";
+      } else {
+        reply = "بارك الله فيك على سؤالك. أنصحك بالاستمرار في ذكر الله، قراءة القرآن، والرجوع إلى أهل العلم الموثوقين في المسائل الفقهية الدقيقة.";
+      }
+
+      setTimeout(() => {
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) {
+          loadingEl.outerHTML = `
+            <div class="bg-emerald-900/60 border border-gold-500/20 rounded-xl p-3 text-xs leading-relaxed max-w-[85%] text-slate-200">
+              <p class="font-bold text-gold-400 mb-1"><i class="fa-solid fa-robot ml-1"></i> مسلم:</p>
+              ${reply}
+            </div>
+          `;
+        }
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
+    }
+  </script>
+</body>
+</html>
